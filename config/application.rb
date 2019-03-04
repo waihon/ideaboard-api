@@ -35,5 +35,12 @@ module IdeaboardApi
     config.generators do |g|
       g.test_framework false
     end
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:3000'
+        resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
+      end
+    end
   end
 end
